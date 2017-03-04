@@ -14,6 +14,7 @@ Dependencies
 ===========
 
 KendoUI (Commercial licence. Not included)
+
 componenthelper.js (proprietary of Reimer IT Solutions. Not included)
 
 
