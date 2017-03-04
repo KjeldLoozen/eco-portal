@@ -1,0 +1,27 @@
+﻿<script type="text/javascript">
+    var hash=location.hash;
+    var params={};
+    try{
+      if (hash.length>1){
+          hash=hash.substr(1);
+          var params=params_unserialize(hash);
+      }
+    } catch(e){}
+    try{
+        parent.loginCallback(params);
+    } catch(e){}
+
+
+    function params_unserialize(p){
+    var ret = {},
+        seg = p.replace(/^\?/,'').split('&'),
+        len = seg.length, i = 0, s;
+    for (;i<len;i++) {
+        if (!seg[i]) { continue; }
+        s = seg[i].split('=');
+        ret[s[0]] = s[1];
+    }
+    return ret;}
+</script>
+
+

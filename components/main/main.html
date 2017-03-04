@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="components/main/main.js"></script>
+</head>
+<body>
+
+<div id="home" class="e-main">
+
+
+    <div id="mainCaroussel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#body_viewContainer_mainCaroussel" data-slide-to="0" class="active"></li>
+        <li data-target="#body_viewContainer_mainCaroussel" data-slide-to="1"></li>
+        <li data-target="#body_viewContainer_mainCaroussel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="img/slider1.jpg" alt="">
+        </div>
+
+        <div class="item">
+          <img src="img/slider2.jpg" alt="">
+        </div>
+
+        <div class="item">
+          <img src="img/slider3.jpg" alt="">
+        </div>
+
+
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#body_viewContainer_mainCaroussel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#body_viewContainer_mainCaroussel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+      <div class="e-o365-button">
+          <div data-bind="attr: { style: getLabelText(280)}" style="background-repeat: no-repeat;background-position: center bottom;background-size: contain;background-image:url(../img/chica-foto_en_web.png)">
+              <a href="#" data-bind="click:eteacherClick">
+              <img src="img/transparent.gif" class="img-responsive">
+              </a>
+          </div>
+      </div>
+
+    </div>
+
+
+    <div class="container-fluid" style="padding-left:35px;padding-top:25px;padding-right:35px;background-color: #eeeeee;">
+        <div id="allEcoCourses" class="row" style="">
+            <div class="col-xs-12">
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <h1 style="color: #55555d;font-size:50px;margin-top:0px;" ><span class="translate" data-bind="text:getLabelText(277)">Spotlight</span>&nbsp;
+                        </h1>
+                    </div>
+                    <div class="col-xs-4">
+                          <a id="" class="btn e-btn-normal" data-bind="click: allCoursesClick"><span class="translate" data-bind="text:getLabelText(281)">View more</span></a>
+                    </div>
+                </div>
+
+                <!--
+                <div class="row">
+                    <div class="col-xs-4">
+                          <a id="" class="btn e-btn-normal" data-bind="click: allCoursesClick"><span class="translate" data-bind="text:getLabelText(281)">View more</span></a>
+                    </div>
+                </div>
+                -->
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="main-content e-courselist clearfix" >
+                              <div id="coursesList" style="border:none"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="padding:25px">
+        <span class="e-homeloading" data-bind="visible:showLoadingGif" ><img src="./img/loading8.gif"></span>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-9" style="border-right: 3px;
+    border-right-style: dashed;
+    border-right-color: #be7803;">
+                <div class="translate" data-bind="html:getLabelText(290)">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 e-newsitems">
+                <h2 class="translate" data-bind="text:getLabelText(282)"></h2>
+                <div data-bind="html:newsHtml">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+<div id="courseDetails" class="modal fade courseDetails " tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div id="courseDetailsModalContent" class="modal-content"></div>
+    </div>
+</div>
+
+
+  <script id="courseShortInfo" type="text/x-kendo-template">
+  <div class="e-course" data-eco-oaipmhidentifier="#=oaiPmhIdentifier#" >
+    <div class="e-course-inside">
+        <div class="front_face">
+		    <div class="images" style="background-image: url('#=courseImageUrl#');">
+			</div>
+			<div class="content">
+			    <h3><a>#=organizer#</a></h3>
+				<h2 class="line-clamp">#=title#</h2>
+                <div class="e-course-dateInfo">
+                # if(startDate === null){ #
+                #   var startDateText=ECO.labelTexts.getLabelText(81); #
+                # } else if(moment(endDate).isAfter(new Date())) {#
+                #    var startDateText=moment(startDate).format('ll'); #
+                # } else {#
+                #    var startDateText=ECO.labelTexts.getLabelText(86); #
+                # } #
+  				  <span class="date">#=startDateText#</span>
+                  <div>
+                    # if(startDate !==null){ #
+                    #    if(moment(startDate).isBefore(new Date()) && moment(endDate).isAfter(new Date())){  #
+                    #       var stillEnrollTranslation = ECO.labelTexts.getLabelText(82) #
+                          <div class="e-course-dateSticker">#=stillEnrollTranslation#</div>
+                    #    }#
+                    # }#
+                  </div>
+                </div>
+
+                <div class="e-course-langinfo">
+                    <ul >
+                        # if(availableLanguageCodes.indexOf("en") >=0){ #
+                            <li class="">
+                              <img src="./img/gb.svg" width="36" height="24" alt="English language" title="English language">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("es") >=0){ #
+                            <li class="">
+                              <img src="./img/es.svg" width="36" height="24" alt="Lengua española" title="Lengua española">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("fr") >=0){ #
+                            <li class="">
+                              <img src="./img/fr.svg" width="36" height="24" alt="Langue française" title="Langue française">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("de") >=0){ #
+                            <li class="">
+                              <img src="./img/de.svg" width="36" height="24" alt="Deutsche Sprache" title="Deutsche Sprache">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("it") >=0){ #
+                            <li class="">
+                              <img src="./img/it.svg" width="36" height="24" alt="Lingua italiana" title="Lingua italiana">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("pt") >=0){ #
+                            <li class="">
+                              <img src="./img/pt.svg" width="36" height="24" alt="Em português" title="Em português">
+                            </li>
+                        # } #
+
+                    </ul>
+                </div>
+
+
+			</div>
+		</div>
+    </div>
+
+  </div>
+  </script>
+
+
+<script id="courseDetailInfo" type="text/x-kendo-template">
+    <div id="courseDetailInfoAnchor" style="height:33px;"></div>
+    <div class="modal-header e-coursehightlight">
+       <div class="row">
+         <div class="col-xs-10">
+         #var goCourseTranslation = ECO.labelTexts.getLabelText(30) #
+         # if(href=='\#'){ #
+            <a class="button" target="_blank" data-bind="click:preCourseClick">
+              <span>#=goCourseTranslation#</span>
+              <svg width="16px" height="28px">
+                <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+              </svg>
+            </a>
+         # } else {#
+            <a class="button" href="#:href#" target="_blank" data-bind="click:gotoCourseClick">
+              <span>#=goCourseTranslation#</span>
+              <svg width="16px" height="28px">
+                <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+              </svg>
+            </a>
+         # } #
+         </div>
+
+         <div class="col-xs-2 ">
+             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+         </div>
+
+       </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+          <div class="col-xs-12 title">
+              #=title#
+          </div>
+        </div>
+
+        <div class="row">
+		    <div class="col-xs-4 summary">
+			    <dl>
+                  <dt>
+                  #var organizerTranslation = ECO.labelTexts.getLabelText(71) #
+                  #=organizerTranslation#
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<organizers.length;i++){ #
+                        <li>#=organizers[i]#</li>
+                    #}#
+                    </ul>
+                  </dd>
+                  <dt>
+                  #var startTranslation = ECO.labelTexts.getLabelText(20) #
+                  #=startTranslation#
+                  </dt>
+                  # if(startDate === null){ #
+                  #   var startDateText=ECO.labelTexts.getLabelText(81); #
+                  # } else if(moment(endDate).isAfter(new Date())) {#
+                  #    var startDateText=moment(startDate).format('ll'); #
+                  # } else {#
+                  #    var startDateText=ECO.labelTexts.getLabelText(86); #
+                  # } #
+                  <dd>#=startDateText#</dd>
+                  <dt>
+                  #var endTranslation = ECO.labelTexts.getLabelText(21) #
+                  #=endTranslation#
+                  </dt>
+                  # if(startDate === null){ #
+                  #   var endtDateText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#
+                  # } else if(moment(endDate).isAfter(new Date())) {#
+                  #    var endtDateText=moment(endDate).format('ll'); #
+                  # } else {#
+                  #   var endtDateText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#
+                  # } #
+                  <dd>#=endtDateText#</dd>
+
+                  <dt>
+                  #var languagesTranslation = ECO.labelTexts.getLabelText(22) #
+                  #=languagesTranslation#
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<availableLanguages.length;i++){ #
+                        <li>#=availableLanguages[i]#</li>
+                    #}#
+                    </ul>
+                  </dd>
+
+                  <dt>
+                  #var studyLoadTranslation = ECO.labelTexts.getLabelText(83);#
+                  #var hoursTranslation = ECO.labelTexts.getLabelText(72);#
+                  #=studyLoadTranslation#
+                  </dt>
+                  <dd>
+                  #if(studyLoad !==null){#
+                      #=studyLoad# #=hoursTranslation#
+                  #} else {#
+                  #var hoursTranslation = ECO.labelTexts.getLabelText(85);#
+                  #=hoursTranslation#
+                  # }#
+                  </dd>
+
+                  <dt>
+                  #var aiTranslation = ECO.labelTexts.getLabelText(24) #
+                  #=aiTranslation#
+                  </dt>
+                  <dd>#=interestArea#</dd>
+
+                  <dt>
+                  #var nrlessonsTranslation = ECO.labelTexts.getLabelText(25) #
+                  #=nrlessonsTranslation#
+                  </dt>
+                  <dd>#=nrOfUnits#</dd>
+
+
+                  <dt>
+                  #var durationTranslation = ECO.labelTexts.getLabelText(26);#
+                  #=durationTranslation#
+                  </dt>
+                  <dd>
+                  #=duration#
+                  </dd>
+
+                  #if(teachers && teachers.length>0){#
+                  <dt>
+                  #var teachersTranslation = ECO.labelTexts.getLabelText(84) #
+                  #=teachersTranslation#
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<teachers.length;i++){ #
+                        <li>#=teachers[i].name#</li>
+                    #}#
+                    </ul>
+                  </dd>
+                  #}#
+
+
+
+                  <dt>
+                  #var platf = ECO.labelTexts.getLabelText(23);#
+                  #=platf#
+                  </dt>
+                  <dd>
+                    <span ><img src= "#=platformInfo.logoImageUrl#" style="width:2em;"/></span>
+                    #=platformInfo.platformName#
+                  </dd>
+
+
+			    </dl>
+			</div>
+
+			<div class="col-xs-8 ">
+                <div class="row e-social-banner">
+                  <ul>
+                      <li>
+                          # url="https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl) + "&display=popup&ref=plugin&src=share_button"; #
+                          <a href="#=url#" target="_blank" data-bind="click:socialShareClick">
+                              <i class="icon-facebook-sign"></i>
+                          </a>
+                      </li>
+                      <li>
+                          # url="https://twitter.com/intent/tweet?url="+ encodeURIComponent(shareUrl) + "&hashtags=JoinECO" + "&text="+ encodeURIComponent(title) #
+                          <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                          >
+                              <i class="icon-twitter-sign"></i>
+                          </a>
+                      </li>
+                      <li>
+                        # url="https://plus.google.com/share?url="+ encodeURIComponent(shareUrl) #
+                        <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <i class="icon-google-plus-sign"></i>
+                        </a>
+                      </li>
+                  </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 info">
+                        #=description#
+                        # if(startDate !==null && moment(startDate).isBefore(new Date()) && moment(endDate).isAfter(new Date())){  #
+                        #     var stillEnrollTranslation = ECO.labelTexts.getLabelText(82); #
+                              <div>
+                                  <div class="e-course-dateSticker">#=stillEnrollTranslation#</div>
+                              </div>
+                        # }#
+                    </div>
+                </div>
+
+
+            </div>
+    </div>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

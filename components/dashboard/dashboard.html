@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="components/dashboard/dashboard.js"></script>
+</head>
+
+<body>
+<div id="dashboard" >
+
+    <div class="container">
+
+      <div class="panel panel-default e-dashboard">
+        <div class="panel-heading clearfix e-panel-heading">
+          <div class="pull-left">
+            <img data-bind="visible: gravatarVisible, attr: { src: gravatarUrl};" class="img-thumbnail img-responsive" alt="profile picture" />
+          </div>
+          <div class="pull-left" style="margin-left:10px;">
+              <h2 class="panel-title" data-bind="text:getLabelText(102)" style="font-size: 30px;font-weight: normal;">My courses</h2>
+              <span data-bind="text:profilename"></span>
+              <span data-bind="visible:showLoadingGif" ><img src="./img/spiffygif_38x38.gif"></span>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel-body">
+          <div id="coursesList" style="box-sizing: content-box;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<script id="myCourseInfo" type="text/x-kendo-template">
+  <div class="e-mycourse " style="box-sizing: border-box;">
+    <div class="row hidden-xs">
+       <div class="col-sm-2">
+            <img src=#=courseImageUrl# style="width: 100%;">
+       </div>
+       <div class="col-sm-10">
+            <div class="row">
+              <div class="col-sm-12">
+                  <h2>#=title#</h2>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="e-progress-bar">
+                      	<div>
+                            #var yourProgressTranslation = ECO.labelTexts.getLabelText(103) #
+                      		<h4>#=yourProgressTranslation#</h4>
+                            # if(progressPercentage !== null){ #
+                        		<p>#=progressPercentage# %</p>
+                               <div class="clearfix"></div>
+                                #var width=(progressPercentage>0?progressPercentage:0) #
+                        		<div class="e-progress"><span style="width: #=width#%;max-width:100%"></span></div>
+                            # }  else { #
+                        		<p>? %</p>
+                                 <div class="clearfix"></div>
+                            # } #
+                      	</div>
+                      </div>
+                    </div>
+                  </div>
+
+                   # if(!deleted){ #
+                  <div class="row">
+                    <div class="col-sm-12 e-social-banner">
+                        <ul>
+                            <li>
+                                # url="https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl) + "&display=popup&ref=plugin&src=share_button"; #
+                                <a href="#=url#" target="_blank" data-bind="click:socialShareClick">
+                                    <i class="icon-facebook-sign"></i>
+                                </a>
+                            </li>
+                            <li>
+                                # url="https://twitter.com/intent/tweet?url="+ encodeURIComponent(shareUrl) + "&hashtags=ECOmooc" + "&text="+ encodeURIComponent(title) #
+                                <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                >
+                                    <i class="icon-twitter-sign"></i>
+                                </a>
+                            </li>
+                            <li>
+                              # url="https://plus.google.com/share?url="+ encodeURIComponent(shareUrl) #
+                              <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                  <i class="icon-google-plus-sign"></i>
+                              </a>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>
+                  # } #
+
+                </div>
+
+                <div class="col-sm-4">
+                  # if(!deleted){ #
+                    #var goCourseTranslation = ECO.labelTexts.getLabelText(30) #
+                    <a class="button" target="_blank" href="#:href#" data-bind="click:gotoCourseClick">
+                      <span >#=goCourseTranslation#</span>
+                      <svg width="16px" height="28px">
+                        <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                      </svg>
+                    </a>
+                  # } else { #
+                      # if(!userCatchAllUrl){ #
+                        #var goCourseTranslation = ECO.labelTexts.getLabelText(174) #
+                        <span class="e-info">#=goCourseTranslation#</span>
+                      # } else { #
+                        # var goCourseTranslation = userCatchAllTranslation #
+                          <a class="button" target="_blank" href="#:userCatchAllUrl#" data-bind="click:gotoCourseClick">
+                            <span >#=goCourseTranslation#</span>
+                            <svg width="16px" height="28px">
+                              <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                            </svg>
+                          </a>
+                      # }  #
+                  # }  #
+                </div>
+
+            </div>
+
+
+
+       </div>
+    </div>
+
+
+    <div class="row visible-xs hidden-sm hidden-md hidden-lg">
+       <div class="col-xs-4">
+            <img src=#=courseImageUrl# style="width: 100%;">
+       </div>
+
+       <div class="col-xs-8">
+            <div class="row">
+              <div class="col-xs-12">
+                  <h2 >#=title#</h2>
+              </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-10">
+                  <div class="e-progress-bar">
+                  	<div>
+                        #var yourProgressTranslation = ECO.labelTexts.getLabelText(103) #
+                  		<h4>#=yourProgressTranslation#</h4>
+                        # if(progressPercentage !== null){ #
+                    		<p>#=progressPercentage# %</p>
+                           <div class="clearfix"></div>
+                            #var width=(progressPercentage>0?progressPercentage:0) #
+                    		<div class="e-progress"><span style="width: #=width#%;max-width:100%"></span></div>
+                        # }  else { #
+                    		<p>? %</p>
+                             <div class="clearfix"></div>
+                        # } #
+                  	</div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                &nbsp;
+                </div>
+            </div>
+
+            # if(!deleted){ #
+            <div class="row e-social-banner">
+              <div class="col-xs-12">
+                  <ul>
+                      <li>
+                          # url="https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl) + "&display=popup&ref=plugin&src=share_button"; #
+                          <a href="#=url#" target="_blank" data-bind="click:socialShareClick">
+                              <i class="icon-facebook-sign"></i>
+                          </a>
+                      </li>
+                      <li>
+                          # url="https://twitter.com/intent/tweet?url="+ encodeURIComponent(shareUrl) + "&hashtags=JoinECO" + "&text="+ encodeURIComponent(title) #
+                          <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                          >
+                              <i class="icon-twitter-sign"></i>
+                          </a>
+                      </li>
+                      <li>
+                        # url="https://plus.google.com/share?url="+ encodeURIComponent(shareUrl) #
+                        <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <i class="icon-google-plus-sign"></i>
+                        </a>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+            # } #
+
+
+
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                  # if(!deleted){ #
+                    #var goCourseTranslation = ECO.labelTexts.getLabelText(30) #
+                    <a class="button" target="_blank" href="#:href#" data-bind="click:gotoCourseClick">
+                      <span >#=goCourseTranslation#</span>
+                      <svg width="16px" height="28px">
+                        <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                      </svg>
+                    </a>
+                  # } else { #
+                      # if(!userCatchAllUrl){ #
+                        #var goCourseTranslation = ECO.labelTexts.getLabelText(174) #
+                        <span class="e-info">#=goCourseTranslation#</span>
+                      # } else { #
+                        # var goCourseTranslation = userCatchAllTranslation #
+                          <a class="button" target="_blank" href="#:userCatchAllUrl#" data-bind="click:gotoCourseClick">
+                            <span >#=goCourseTranslation#</span>
+                            <svg width="16px" height="28px">
+                              <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                            </svg>
+                          </a>
+                      # }  #
+                  # }  #
+
+                </div>
+            </div>
+       </div>
+    </div>
+
+
+
+  </div>
+</script>
+
+</body>
+</html>

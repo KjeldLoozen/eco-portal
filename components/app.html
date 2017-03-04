@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+  <script src="components/app.js">
+</script>
+
+  <title></title>
+</head>
+
+<body>
+  <div id="screen">
+    <div class="e-top-header">
+      <div class="container-fluid clearfix">
+        <ul class="social">
+          <li>
+            <a target="_blank" href="https://twitter.com/ecomooc"><i class="icon-twitter"></i></a>
+          </li>
+
+          <li>
+            <a target="_blank" href="https://www.facebook.com/ecolearning.eu"><i class="icon-facebook"></i></a>
+          </li>
+
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/company/ecolearning"><i class="icon-linkedin"></i></a>
+          </li>
+
+          <li>
+            <a target="_blank" href="https://www.youtube.com/user/ecolearning"><i class="icon-youtube"></i></a>
+          </li>
+
+          <li>
+            <a target="_blank" class="translate" data-bind="attr:{href:getLabelText(168)}" ><i class="icon-rss"></i></a>
+          </li>
+
+          <li>
+            <a target="_blank" href="https://plus.google.com/+EcolearningEu"><i class="icon-google-plus"></i></a>
+          </li>
+        </ul>
+
+
+
+
+
+
+
+
+
+        <ul class="e-languageflags">
+          <li class="">
+            <a href="#" data-bind="click: changeLanguageEnglish"><img src="./img/en.png" width="18" height="12" alt="English language" title="English language"></a>
+          </li>
+
+          <li class="">
+            <a href="#" data-bind="click: changeLanguageSpanish"><img src="./img/es.png" width="18" height="12" alt="Lengua española" title="Lengua española"></a>
+          </li>
+
+          <li class="">
+            <a href="#" data-bind="click: changeLanguageFrench"><img src="./img/fr.png" width="18" height="12" alt="Langue française" title="Langue française"></a>
+          </li>
+
+          <li class="">
+            <a href="#" data-bind="click: changeLanguageGerman"><img src="./img/de.png" width="18" height="12" alt="Deutsche Sprache" title="Deutsche Sprache"></a>
+          </li>
+
+          <li class="">
+            <a href="#" data-bind="click: changeLanguageItalian"><img src="./img/it.png" width="18" height="12" alt="Lingua italiana" title="Lingua italiana"></a>
+          </li>
+
+          <li class="">
+            <a href="#" data-bind="click: changeLanguagePortuguese"><img src="./img/pt.png" width="18" height="12" alt="Em português" title="Em português"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="e-top-header2">
+
+        <nav class="navbar navbar-default " role="navigation" style="min-height: 100px;padding-top: 20px;">
+          <div class="container-fluid clearfix">
+            <div class="row">
+              <div class="col-xs-12" >
+                <img alt="Eco Logo" src="./img/eco_logo_header.png" style="float: left;width: 135px;margin-left: 15px;">
+                <button id="mobile_menu" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#body_eco-collapse-1"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+
+                <ul class="nav navbar-nav navbar-left hidden-xs">
+                  <li>
+                    <a id="btnHome" href="#" data-bind="click:homeClick"><span class="translate" data-bind="text:getLabelText(278)">Home</span></a>
+                  </li>
+
+                  <li>
+                    <a class="translate" data-bind="attr:{href:getLabelText(165)}" target="_blank" title="About ECO" href="http://project.ecolearning.eu/"><span class="translate" >ECO Project</span></a>
+                  </li>
+
+                  <li>
+                    <a class="translate" target="_blank" data-bind="attr:{href:getLabelText(160), title:getLabelText(159)}"><span class="translate" data-bind="text:getLabelText(159)">News</span></a>
+                  </li>
+
+
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="translate" data-bind="text:getLabelText(3)">Courses</span> <i class="icon-caret-down"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a tabindex="-1" id="btnAllCourses" href="#" data-bind="click:allCoursesClick"><span class="translate" data-bind="text:getLabelText(275)">All Courses</span></a>
+                      </li>
+                      <li>
+                          <a tabindex="-1" id="btnComingSoon" href="#" data-bind="click:comingSoonClick"><span class="translate" data-bind="text:getLabelText(276)">Coming soon</span></a>
+                      </li>
+
+                      <li>
+                        <a tabindex="-1" id="btnSpotlight" href="#" data-bind="click:spotlightClick"><span class="translate" data-bind="text:getLabelText(277)">In the spotlight</span></a>
+                      </li>
+
+                      <li data-bind="visible: welcomeMessageVisible">
+                        <a tabindex="-1" href="#" data-bind="click:myDashboardClick" ><span class="translate" data-bind="text:getLabelText(102)">My Courses</span></a>
+                      </li>
+
+
+                    </ul>
+                  </li>
+
+                  <li >
+                   <a id="btnTeacherForm" href="#" data-bind="click:teacherFormClick"><span class="translate" data-bind="text:getLabelText(200)">Become an e-teacher</span></a>
+                  </li>
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                  <li>
+                    <a id="btnLogin" class="e-btnLogin" href="#" data-bind="visible: loginLinkVisible, click:loginClick"><i class="icon-user"></i>&nbsp;&nbsp;<span class="translate" data-bind="text:getLabelText(4)">Login</span></a>
+                  </li>
+
+                  <li>
+                    <a id="btnRegister" class="e-btnRegister" data-bind="visible: loginLinkVisible, attr:{href:registerUrl}"><span class="translate" data-bind="text:getLabelText(279)">Register</span></a>
+                  </li>
+
+                  <li class="dropdown" data-bind="visible: welcomeMessageVisible">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <span data-bind="text:getUserName"></span>  <i class="icon-caret-down"></i></a>
+
+                    <ul class="dropdown-menu" role="menu">
+                      <li>
+                        <a tabindex="-1" id="btnMyProfile" href="#" data-bind="click:myProfileClick"><span class="translate" data-bind="text:getLabelText(5)">My Profile</span></a>
+                      </li>
+
+                      <li>
+                        <a tabindex="-1" id="btnMyDashboard" href="#" data-bind="click:myDashboardClick"><span class="translate" data-bind="text:getLabelText(102)">My Courses</span></a>
+                      </li>
+
+                      <li>
+                        <a tabindex="-1" id="btnMyActivities" href="http://la.ecolearning.eu/" target="_blank"><span class="translate" data-bind="text:getLabelText(175)">My Courses</span></a>
+                      </li>
+
+                      <li class="divider visible-phone"></li>
+
+                      <li>
+                        <a tabindex="-1" href="#" data-bind="click:logoutClick"><span class="translate" data-bind="text:getLabelText(6)">Logout</span></a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- col-xs-6 col-sm-9 -->
+            </div><!-- row -->
+
+            <div class="row visible-xs">
+              <div class="col-xs-12">
+                <div class="collapse navbar-collapse" id="eco-collapse-1">
+                  <ul class="nav navbar-nav navbar-left">
+                      <li>
+                        <a id="btnHome" href="#" data-bind="click:homeClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" >Home</span></a>
+                      </li>
+
+                      <li>
+                        <a class="translate" data-bind="attr:{href:getLabelText(165)}" target="_blank" title="About ECO" href="http://project.ecolearning.eu/"><span class="translate" >ECO Project</span></a>
+                      </li>
+
+                      <li>
+                        <a class="translate" target="_blank" data-bind="attr:{href:getLabelText(160), title:getLabelText(159)}"><span class="translate" data-bind="text:getLabelText(159)">News</span></a>
+                      </li>
+
+                      <li >
+                       <a id="btnTeacherForm" href="#" data-bind="click:teacherFormClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(200)">Become an e-teacher</span></a>
+                      </li>
+
+                      <li data-bind="visible: welcomeMessageVisible">
+                        <a tabindex="-1" href="#" data-bind="click:myDashboardClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(102)">My Courses</span></a>
+                      </li>
+
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="translate" data-bind="text:getLabelText(3)">Courses</span> <i class="icon-caret-down"></i></a>
+                          <ul class="dropdown-menu" role="menu">
+                              <li>
+                                <a tabindex="-1" id="btnAllCourses" href="#" data-bind="click:allCoursesClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(275)">All Courses</span></a>
+                              </li>
+                              <li>
+                                <a tabindex="-1" id="btnComingSoon" href="#" data-bind="click:comingSoonClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(276)">Coming soon</span></a>
+                              </li>
+
+                              <li>
+                                <a tabindex="-1" id="btnSpotlight" href="#" data-bind="click:spotlightClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(277)">In the spotlight</span></a>
+                              </li>
+
+                          </ul>
+                      </li>
+
+
+
+
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                      <a id="btnLogin" href="#" data-bind="visible: loginLinkVisible, click:loginClick"><span class="translate" data-bind="text:getLabelText(4)">Login</span></a>
+                    </li>
+
+                    <li>
+                      <a id="btnRegister" data-bind="visible: loginLinkVisible, attr:{href:registerUrl}"><span class="translate" data-bind="text:getLabelText(279)">Register</span></a>
+                    </li>
+
+
+                    <li class="dropdown" data-bind="visible: welcomeMessageVisible">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> <span data-bind="text:getUserName"></span>  <i class="icon-caret-down"></i></a>
+
+                      <ul class="dropdown-menu" role="menu">
+                        <li>
+                          <a tabindex="-1" id="btnMyProfile" href="#" data-bind="click:myProfileClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(5)">My Profile</span></a>
+                        </li>
+
+                        <li>
+                          <a tabindex="-1" id="btnMyDashboard" href="#" data-bind="click:myDashboardClick" data-toggle="collapse" data-target=".navbar-collapse"><span class="translate" data-bind="text:getLabelText(102)">My Courses</span></a>
+                        </li>
+
+                        <li class="divider visible-phone"></li>
+
+                        <li>
+                          <a tabindex="-1" href="#" data-bind="click:logoutClick"><span class="translate" data-bind="text:getLabelText(6)">Logout</span></a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- col xs-12-->
+            </div><!-- row visible-xs-->
+          </div>
+        </nav>
+    </div>
+
+
+    <div id="viewContainer" class='e-maincontent clearfix'>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <div id="text-8" class="widget widget_text">
+              <div class="textwidget">
+                <p><img src="./img/logo_comicion_b.png" alt="LOGO CIP European Commission"><br>
+                Project funded from<br>
+                the European Community's CIP</p>
+
+                <p>(Programme under grant<br>
+                agreement n° 621127)</p>
+              </div>
+            </div>
+
+            <div id="text_icl-6" class="widget widget_text_icl">
+              <h4 class="translate" data-bind="text:getLabelText(161)">Legal Information</h4>
+
+              <div class="textwidget">
+                <ul>
+                  <li>
+                    <a class="translate" data-bind="attr:{href:getLabelText(163), title:getLabelText(162)}" ><span class="translate" data-bind="text:getLabelText(162)">Privacy Policy</span></a>
+                  </li>
+
+                  <li>
+                    <a class="translate" data-bind="attr:{href:getLabelText(166), title:getLabelText(164)}" ><span class="translate" data-bind="text:getLabelText(164)">Privacy Policy</span></a>
+                  </li>
+
+                  <li>
+                    <a class="translate" data-bind="attr:{href:getLabelText(170), title:getLabelText(169)}" ><span class="translate" data-bind="text:getLabelText(169)">Terms of Service</span></a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div><!--/span_3-->
+
+          <div class="col-xs-12 col-sm-4">
+            <!-- Footer widget area 2 -->
+            <div id="text_icl-16" class="widget widget_text_icl">
+              <h4 class="translate" data-bind="text:getLabelText(167)">Social Media</h4>
+
+              <div class="textwidget">
+                <ul>
+                  <li>
+                    <a target="_blank" title="twitter opens in new window" href="https://twitter.com/ecomooc">twitter.com</a>
+                  </li>
+
+                  <li>
+                    <a target="_blank" title="facebook opens in new window" href="https://www.facebook.com/ecolearning.eu">facebook.com</a>
+                  </li>
+
+                  <li>
+                    <a target="_blank" title="linkedin opens in new window" href="https://www.linkedin.com/company/ecolearning">linkedin.com</a>
+                  </li>
+
+                  <li>
+                    <a target="_blank" title="youtube opens in new window" href="https://www.youtube.com/user/ecolearning">youtube.com</a>
+                  </li>
+
+                  <li>
+                    <a target="_blank" class="translate" data-bind="attr:{href:getLabelText(168)}" title="rss opens in new window" >ecolearning.eu</a>
+                  </li>
+
+                  <li>
+                    <a target="_blank" title="google plus opens in new window" href="http://plus.google.com/11714267627503901809">plus.google.com</a>
+                  </li>
+
+                  <li>
+                    <a target="_blank" title="strategy opens in new window" href="http://project.ecolearning.eu/strategy/">Strategy</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div><!--/span_3-->
+
+          <div class="col-xs-12 col-sm-4">
+            <!-- Footer widget area 3 -->
+            <a class="twitter-timeline"
+            data-chrome="nofooter noborders transparent"
+            data-tweet-limit="2"
+            data-theme="dark"
+            data-link-color="#fff"
+            href="https://twitter.com/ECOmooc" data-widget-id="471931899724587009">TWEETS by @ECOmooc</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div><!--/span_3-->
+        </div><!--/row-->
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

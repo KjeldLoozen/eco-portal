@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="components/courses/highlight.js"></script>
+</head>
+<body>
+
+
+<div id="courseDetails" class="courseDetails ">
+</div>
+
+
+<script id="courseDetailInfo" type="text/x-kendo-template">
+<div class="container">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 e-coursehightlight">
+        <div class="row">
+            <div class="col-xs-12 ">
+                <div class="row">
+                    <div class="hidden-xs col-sm-4">
+                        <img src="#=courseImageUrl#" >
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        <h1>#=title#<h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 ">
+            &nbsp;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-xs-6">
+                  <a class="button" target="_blank" data-bind="click:preCourseClick">
+                    <span class="translate" data-bind="text:getLabelText(30)"></span>
+                    <svg width="16px" height="28px">
+                      <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                    </svg>
+                  </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 ">
+            &nbsp;
+            </div>
+        </div>
+
+
+        <div class="row">
+		    <div class="col-xs-4 summary">
+			    <dl>
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(71)"></span>
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<organizers.length;i++){ #
+                        <li>#=organizers[i]#</li>
+                    #}#
+                    </ul>
+                  </dd>
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(20)"></span>
+                  </dt>
+                  # if(startDate === null){ #
+                  #   var startDateText=ECO.labelTexts.getLabelText(81); #
+                  # } else if(moment(endDate).isAfter(new Date())) {#
+                  #    var startDateText=moment(startDate).format('ll'); #
+                  # } else {#
+                  #    var startDateText=ECO.labelTexts.getLabelText(86); #
+                  # } #
+                  <dd>#=startDateText#</dd>
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(21)"></span>
+                  </dt>
+                  # if(startDate === null){ #
+                  #   var endtDateText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#
+                  # } else if(moment(endDate).isAfter(new Date())) {#
+                  #    var endtDateText=moment(endDate).format('ll'); #
+                  # } else {#
+                  #   var endtDateText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#
+                  # } #
+                  <dd>#=endtDateText#</dd>
+
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(22)"></span>
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<availableLanguages.length;i++){ #
+                        <li>#=availableLanguages[i]#</li>
+                    #}#
+                    </ul>
+                  </dd>
+
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(83)"></span>
+                  </dt>
+                  <dd>
+                  #if(studyLoad !==null){#
+                      #=studyLoad# <span class="translate" data-bind="text:getLabelText(72)"></span>
+                  #} else {#
+                  <span class="translate" data-bind="text:getLabelText(85)"></span>
+                  # }#
+                  </dd>
+
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(24)"></span>
+                  </dt>
+                  <dd>#=interestArea#</dd>
+
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(25)"></span>
+                  </dt>
+                  <dd>#=nrOfUnits#</dd>
+
+
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(26)"></span>
+                  </dt>
+                  <dd>
+                  #=duration#
+                  </dd>
+
+                  #if(teachers && teachers.length>0){#
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(84)"></span>
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<teachers.length;i++){ #
+                        <li>#=teachers[i].name#</li>
+                    #}#
+                    </ul>
+                  </dd>
+                  #}#
+
+                  <dt>
+                  <span class="translate" data-bind="text:getLabelText(23)"></span>
+                  </dt>
+                  <dd>
+                    <span ><img src= "#=platformInfo.logoImageUrl#" style="width:2em;"/></span>
+                    #=platformInfo.platformName#
+                  </dd>
+
+
+			    </dl>
+			</div>
+			<div class="col-xs-8 info">
+
+              <div class="row e-social-banner">
+                <ul>
+                    <li>
+                        # url="https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl) + "&display=popup&ref=plugin&src=share_button"; #
+                        <a href="#=url#" target="_blank" >
+                            <i class="icon-facebook-sign"></i>
+                        </a>
+                    </li>
+                    <li>
+                        # url="https://twitter.com/intent/tweet?url="+ encodeURIComponent(shareUrl) + "&hashtags=JoinECO" + "&text="+ encodeURIComponent(title) #
+                        <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <i class="icon-twitter-sign"></i>
+                        </a>
+                    </li>
+                    <li>
+                      # url="https://plus.google.com/share?url="+ encodeURIComponent(shareUrl) #
+                      <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                          <i class="icon-google-plus-sign"></i>
+                      </a>
+                    </li>
+                </ul>
+              </div>
+
+
+
+              <div class="row">
+                  <div class="col-xs-12">
+                      #=description#
+                  </div>
+              </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<div>
+</script>
+
+
+</body>
+</html>

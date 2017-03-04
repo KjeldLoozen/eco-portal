@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="components/forms/office365form.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Michroma" rel="stylesheet">
+</head>
+
+<body>
+<div id="o365form" >
+
+<div class="container">
+  <div class="panel panel-default office365-sub">
+    <div class="panel-heading clearfix ">
+      <div class="pull-left" >
+          <h2 class="panel-title translate" data-bind="html:getLabelText(256)">¡Cualquier participante de ECO que se haya matriculado en al menos un curso puede obtener una licencia de <strong>Office 365 gratis!</strong></h2>
+      </div>
+    </div>
+
+    <div class="panel-body">
+
+      <form class="form" role="form">
+        <div id="page1" class="e-form"> <!-- Page 1 -->
+          <div class="ss_bg">
+              <div class="ss_lang">
+                  <div class="row">
+                    <div class="col-xs-12 ">
+                        <span class="translate" data-bind="text:getLabelText(257)">My preferred language</span>&nbsp;&nbsp;
+
+                          <select data-bind="value:language">
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="it">Italiano</option>
+                                <option value="pt">Português</option>
+                                <option value="es">Español</option>
+                          </select>
+                    </div>
+
+                  </div>
+
+
+              </div>
+              <p></p>
+              <div class="ss_course" >
+                  <span data-bind="text:getLabelText(258)">Te has matriculado en</span>
+                  <span data-bind="text:nrCourses">0</span>
+                  <span data-bind="text:getLabelText(259)">cursos</span>.
+              </div>
+          </div>
+
+
+            <div class="form-actions form-group col-sm-12">
+                <div class="col-xs-12 col-sm-4">
+                    <a class="button" href="#" data-bind="click:createOffice365Account" >
+                      <span class="translate" data-bind="html:getLabelText(255)">Please create my free Office365 Account!</span>
+                      <svg width="16px" height="28px">
+                        <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                      </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>   <!-- Page 1 -->
+
+
+    </form>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</body>
+
+</html>

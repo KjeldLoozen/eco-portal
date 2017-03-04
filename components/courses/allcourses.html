@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="components/courses/allcourses.js"></script>
+</head>
+<body>
+
+
+
+
+
+<div id="allEcoCourses" class="container-fluid" style="padding-left:15px;">
+
+    <div>
+            <h1 style="color: #55555d;font-size:50px;margin-top:0px;" ><span data-bind="text:titleText">All courses</span>&nbsp;
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#body_viewContainer_collapseFilter" aria-expanded="false" aria-controls="body_viewContainer_collapseFilter">
+              <i class="icon-filter"></i>&nbsp;<span data-bind="text:getLabelText(274)"></span>
+            </button>
+            </h1>
+            <div class="collapse" id="collapseFilter">
+              <div class="well" style="margin-top:10px;margin-left:30px;margin-right:30px;">
+                  <h3><span data-bind="text:getLabelText(274)" >Filter</span></h3>
+
+                  <div class="row">
+                      <div class="col-xs-6 col-sm-1">
+                          <span class="translate" data-bind="text:getLabelText(77)" >Language</span>
+                      </div>
+
+                      <div class="col-xs-6 col-sm-4 ">
+                          <select id="langFilter" multiple="multiple" >
+                                  <option value="en">English</option>
+                                  <option value="fr">Français</option>
+                                  <option value="de">Deutsch</option>
+                                  <option value="it">Italiano</option>
+                                  <option value="pt">Português</option>
+                                  <option value="es">Español</option>
+                          </select>
+                      </div>
+
+
+                      <div class="col-xs-6 col-sm-1">
+                          <span class="translate" data-bind="text:getLabelText(76)">category </span>
+                      </div>
+                      <div class="col-xs-6 col-sm-4">
+                          <select id="AIFilter" multiple="multiple" >
+                                        <option value="ES" class="translate" data-bind="text:getLabelText(40)"></option>
+                                        <option value="SS" class="translate" data-bind="text:getLabelText(41)"></option>
+                                        <option value="HUM" class="translate" data-bind="text:getLabelText(42)"></option>
+                                        <option value="NSM" class="translate" data-bind="text:getLabelText(43)"></option>
+                                        <option value="BS" class="translate" data-bind="text:getLabelText(44)"></option>
+                                        <option value="TS" class="translate" data-bind="text:getLabelText(45)"></option>
+                          </select>
+                      </div>
+
+                  </div>
+              </div>
+            </div>
+
+    </div>
+
+    <div class="row">
+        <div id="pager" class="col-xs-10 k-pager-wrap" style="padding-left: 15px;"></div>
+    </div>
+
+
+
+    <div class="main-content e-courselist clearfix" >
+          <div id="coursesList" style="border:none"></div>
+    </div>
+
+
+    <div class="row">
+        <div id="pager2" class="col-xs-10 k-pager-wrap" style="padding-left: 15px;"></div>
+    </div>
+    <br><br>
+</div>
+
+
+
+  <div id="courseDetails" class="modal fade courseDetails " tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div id="courseDetailsModalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+
+
+  <script id="courseShortInfo" type="text/x-kendo-template">
+  <div class="e-course" data-eco-oaipmhidentifier="#=oaiPmhIdentifier#" >
+    <div class="e-course-inside">
+        <div class="front_face">
+		    <div class="images" style="background-image: url('#=courseImageUrl#');">
+			</div>
+			<div class="content">
+			    <h3><a>#=organizer#</a></h3>
+				<h2 class="line-clamp">#=title#</h2>
+                <div class="e-course-dateInfo">
+                # if(startDate === null){ #
+                #   var startDateText=ECO.labelTexts.getLabelText(81); #
+                # } else if(moment(endDate).isAfter(new Date())) {#
+                #    var startDateText=moment(startDate).format('ll'); #
+                # } else {#
+                #    var startDateText=ECO.labelTexts.getLabelText(86); #
+                # } #
+  				  <span class="date">#=startDateText#</span>
+                  <div>
+                    # if(startDate !==null){ #
+                    #    if(moment(startDate).isBefore(new Date()) && moment(endDate).isAfter(new Date())){  #
+                    #       var stillEnrollTranslation = ECO.labelTexts.getLabelText(82) #
+                          <div class="e-course-dateSticker">#=stillEnrollTranslation#</div>
+                    #    }#
+                    # }#
+                  </div>
+                </div>
+
+                <div class="e-course-langinfo">
+                    <ul >
+                        # if(availableLanguageCodes.indexOf("en") >=0){ #
+                            <li class="">
+                              <img src="./img/gb.svg" width="36" height="24" alt="English language" title="English language">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("es") >=0){ #
+                            <li class="">
+                              <img src="./img/es.svg" width="36" height="24" alt="Lengua española" title="Lengua española">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("fr") >=0){ #
+                            <li class="">
+                              <img src="./img/fr.svg" width="36" height="24" alt="Langue française" title="Langue française">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("de") >=0){ #
+                            <li class="">
+                              <img src="./img/de.svg" width="36" height="24" alt="Deutsche Sprache" title="Deutsche Sprache">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("it") >=0){ #
+                            <li class="">
+                              <img src="./img/it.svg" width="36" height="24" alt="Lingua italiana" title="Lingua italiana">
+                            </li>
+                        # } #
+
+                        # if(availableLanguageCodes.indexOf("pt") >=0){ #
+                            <li class="">
+                              <img src="./img/pt.svg" width="36" height="24" alt="Em português" title="Em português">
+                            </li>
+                        # } #
+
+                    </ul>
+                </div>
+
+
+			</div>
+		</div>
+    </div>
+
+  </div>
+  </script>
+
+
+<script id="courseDetailInfo" type="text/x-kendo-template">
+    <div id="courseDetailInfoAnchor" style="height:33px;"></div>
+    <div class="modal-header e-coursehightlight">
+       <div class="row">
+         <div class="col-xs-10">
+         #var goCourseTranslation = ECO.labelTexts.getLabelText(30) #
+         # if(href=='\#'){ #
+            <a class="button" target="_blank" data-bind="click:preCourseClick">
+              <span>#=goCourseTranslation#</span>
+              <svg width="16px" height="28px">
+                <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+              </svg>
+            </a>
+         # } else {#
+            <a class="button" href="#:href#" target="_blank" data-bind="click:gotoCourseClick">
+              <span>#=goCourseTranslation#</span>
+              <svg width="16px" height="28px">
+                <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+              </svg>
+            </a>
+         # } #
+         </div>
+
+         <div class="col-xs-2 ">
+             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+         </div>
+
+       </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+          <div class="col-xs-12 title">
+              #=title#
+          </div>
+        </div>
+
+        <div class="row">
+		    <div class="col-xs-4 summary">
+			    <dl>
+                  <dt>
+                  #var organizerTranslation = ECO.labelTexts.getLabelText(71) #
+                  #=organizerTranslation#
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<organizers.length;i++){ #
+                        <li>#=organizers[i]#</li>
+                    #}#
+                    </ul>
+                  </dd>
+                  <dt>
+                  #var startTranslation = ECO.labelTexts.getLabelText(20) #
+                  #=startTranslation#
+                  </dt>
+                  # if(startDate === null){ #
+                  #   var startDateText=ECO.labelTexts.getLabelText(81); #
+                  # } else if(moment(endDate).isAfter(new Date())) {#
+                  #    var startDateText=moment(startDate).format('ll'); #
+                  # } else {#
+                  #    var startDateText=ECO.labelTexts.getLabelText(86); #
+                  # } #
+                  <dd>#=startDateText#</dd>
+                  <dt>
+                  #var endTranslation = ECO.labelTexts.getLabelText(21) #
+                  #=endTranslation#
+                  </dt>
+                  # if(startDate === null){ #
+                  #   var endtDateText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#
+                  # } else if(moment(endDate).isAfter(new Date())) {#
+                  #    var endtDateText=moment(endDate).format('ll'); #
+                  # } else {#
+                  #   var endtDateText="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#
+                  # } #
+                  <dd>#=endtDateText#</dd>
+
+                  <dt>
+                  #var languagesTranslation = ECO.labelTexts.getLabelText(22) #
+                  #=languagesTranslation#
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<availableLanguages.length;i++){ #
+                        <li>#=availableLanguages[i]#</li>
+                    #}#
+                    </ul>
+                  </dd>
+
+                  <dt>
+                  #var studyLoadTranslation = ECO.labelTexts.getLabelText(83);#
+                  #var hoursTranslation = ECO.labelTexts.getLabelText(72);#
+                  #=studyLoadTranslation#
+                  </dt>
+                  <dd>
+                  #if(studyLoad !==null){#
+                      #=studyLoad# #=hoursTranslation#
+                  #} else {#
+                  #var hoursTranslation = ECO.labelTexts.getLabelText(85);#
+                  #=hoursTranslation#
+                  # }#
+                  </dd>
+
+                  <dt>
+                  #var aiTranslation = ECO.labelTexts.getLabelText(24) #
+                  #=aiTranslation#
+                  </dt>
+                  <dd>#=interestArea#</dd>
+
+                  <dt>
+                  #var nrlessonsTranslation = ECO.labelTexts.getLabelText(25) #
+                  #=nrlessonsTranslation#
+                  </dt>
+                  <dd>#=nrOfUnits#</dd>
+
+
+                  <dt>
+                  #var durationTranslation = ECO.labelTexts.getLabelText(26);#
+                  #=durationTranslation#
+                  </dt>
+                  <dd>
+                  #=duration#
+                  </dd>
+
+                  #if(teachers && teachers.length>0){#
+                  <dt>
+                  #var teachersTranslation = ECO.labelTexts.getLabelText(84) #
+                  #=teachersTranslation#
+                  </dt>
+                  <dd>
+                    <ul>
+                    #for(var i =0;i<teachers.length;i++){ #
+                        <li>#=teachers[i].name#</li>
+                    #}#
+                    </ul>
+                  </dd>
+                  #}#
+
+
+
+                  <dt>
+                  #var platf = ECO.labelTexts.getLabelText(23);#
+                  #=platf#
+                  </dt>
+                  <dd>
+                    <span ><img src= "#=platformInfo.logoImageUrl#" style="width:2em;"/></span>
+                    #=platformInfo.platformName#
+                  </dd>
+
+
+			    </dl>
+			</div>
+
+			<div class="col-xs-8 ">
+                <div class="row e-social-banner">
+                  <ul>
+                      <li>
+                          # url="https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl) + "&display=popup&ref=plugin&src=share_button"; #
+                          <a href="#=url#" target="_blank" data-bind="click:socialShareClick">
+                              <i class="icon-facebook-sign"></i>
+                          </a>
+                      </li>
+                      <li>
+                          # url="https://twitter.com/intent/tweet?url="+ encodeURIComponent(shareUrl) + "&hashtags=JoinECO" + "&text="+ encodeURIComponent(title) #
+                          <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                          >
+                              <i class="icon-twitter-sign"></i>
+                          </a>
+                      </li>
+                      <li>
+                        # url="https://plus.google.com/share?url="+ encodeURIComponent(shareUrl) #
+                        <a href="#=url#" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <i class="icon-google-plus-sign"></i>
+                        </a>
+                      </li>
+                  </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 info">
+                        #=description#
+                        # if(startDate !==null && moment(startDate).isBefore(new Date()) && moment(endDate).isAfter(new Date())){  #
+                        #     var stillEnrollTranslation = ECO.labelTexts.getLabelText(82); #
+                              <div>
+                                  <div class="e-course-dateSticker">#=stillEnrollTranslation#</div>
+                              </div>
+                        # }#
+                    </div>
+                </div>
+
+                <div class="e-courseSuggestions" data-bind="visible:showCourseSuggestions">
+                  <div class="row">
+                      <div>
+                          <h2 data-bind="text:getLabelText(171)">You might also like:<h2>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12">
+                          <div id="courseSuggestionList"></div>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+    </div>
+
+</script>
+
+
+  <script id="courseSuggestionTemplate" type="text/x-kendo-template">
+    <div class="row e-courseSuggestionItem" >
+		    <div class="col-xs-3" >
+                <div style="background-image: url('#=courseImageUrl#');background-size:100%;margin-bottom:-1000px;padding-bottom:1000px;height:100%;background-repeat: no-repeat;">
+                </div>
+            </div>
+		    <div class="col-xs-8" >
+                #=title#
+            </div>
+    </div>
+  </script>
+
+
+
+
+<style scoped>
+select option[disabled]:first-child {
+	display: none;
+}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="components/forms/teacherform.js"></script>
+</head>
+
+<body>
+<div id="teacherform" >
+
+<div class="container">
+
+  <div class="panel panel-default">
+
+    <div class="panel-body">
+
+      <form class="form" role="form">
+        <div id="page1" class="e-form"> <!-- Page 1 -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <span data-bind="visible:showLoadingGif" ><img src="./img/loading8.gif"></span>
+                    <p class="translate" data-bind="html:getLabelText(292)"></p>
+                </div>
+            </div>
+
+            <div class="form-actions form-group col-sm-12">
+                <div class="col-xs-12 col-sm-4">
+                    <a class="button" href="#" data-bind="click:showfaq">
+                        <span class="translate" data-bind="text:getLabelText(172)">Read FAQ</span>
+                        <svg width="16px" height="28px">
+                            <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <a class="button" href="#" data-bind="click:showForm" >
+                      <span class="translate" data-bind="html:getLabelText(123)">SHow me</span>
+                      <svg width="16px" height="28px">
+                        <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                      </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>   <!-- Page 1 -->
+
+
+        <div id="faq" class="e-form" style="display:none;"> <!-- FAQ Page -->
+            <span data-bind="visible:showLoadingGif" ><img src="./img/loading8.gif"></span>
+            <p class="translate" data-bind="html:getLabelText(291)">
+            </p>
+            <div class="form-actions form-group col-sm-12">
+              <div class="col-xs-12 col-sm-4">
+                  <a class="button" href="#" data-bind="click:showIntro" >
+                    <span class="translate" data-bind="text:getLabelText(152)">back</span>
+                    <svg width="16px" height="28px" style="float:left">
+                      <path d="M12,2 L1,13 L12,25 L12,23 L3,13 L12,4 z"></path>
+                    </svg>
+                  </a>
+              </div>
+            </div>
+        </div> <!-- FAQ Page -->
+
+
+        <div id="page2" style="display:none;" class="e-form">
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate e-form-chapter" data-bind="text:getLabelText(151)">tell us</label>
+          </div>
+
+          <div class="form-group col-sm-12" >
+              <label class="control-label translate" for ="teacherYesNo" data-bind="text:getLabelText(124)">Teacher?</label>
+              <div class="controls">
+                  <label class="radio-inline" >
+                  <input type="radio" value="yes"  name="teacherYesNo" data-bind="checked:teacherYesNo" >
+                  <span class="translate" data-bind="text:getLabelText(125)"></span>
+                  </label>
+                  <label class="radio-inline">
+                  <input type="radio" value="no" name="teacherYesNo" data-bind="checked:teacherYesNo">
+                  <span class="translate" data-bind="text:getLabelText(126)"></span>
+                  </label>
+              </div>
+          </div>
+
+          <div class="form-group col-sm-12" data-bind="visible:showTeacherQuestions">
+              <label for="whatdoyouteach" class="control-label translate"data-bind="text:getLabelText(127)" >what</label>
+              <textarea id="whatdoyouteach" name="whatdoyouteach" data-bind="value:whatdoyouteach" class="form-control" rows="3" placeholder=""></textarea>
+          </div>
+
+          <div class="form-group col-sm-12" data-bind="visible:showTeacherQuestions">
+              <label class="control-label translate" data-bind="text:getLabelText(128)">level</label>
+                <div class="controls">
+                    <select class="form-control" data-bind="value:educationlevel">
+                          <option class="translate" value="PrimaryEducation" data-bind="text:getLabelText(129)"></option>
+                          <option class="translate" value="SecondaryEducation" data-bind="text:getLabelText(130)"></option>
+                          <option class="translate" value="HigherEducation" data-bind="text:getLabelText(131)"></option>
+                          <option class="translate" value="VocationalEducation" data-bind="text:getLabelText(132)"></option>
+                          <option class="translate" value="SpecialNeedsEducation" data-bind="text:getLabelText(133)"></option>
+                          <option class="translate" value="LifelongEducation" data-bind="text:getLabelText(134)"></option>
+                          <option class="translate" value="NonformalEducation" data-bind="text:getLabelText(135)"></option>
+                          <option class="translate" value="Other" data-bind="text:getLabelText(201)"></option>
+                    </select>
+                </div>
+          </div>
+
+          <div class="form-group col-xs-12">
+              <label class="control-label translate" for="course" data-bind="text:getLabelText(180)">mooc?</label>
+              <div class="row">
+              <span class="k-invalid-msg" data-for="course"></span>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <label class="checkbox" >
+                  <input type="checkbox" name="course" value="Introduzione alla matematica per l'università: Pre-Calculus"  data-bind="checked:completedMoocs" >
+                  <span>Introduzione alla matematica per l'università: Pre-Calculus</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="E-Learning-Projektmanagement an Schulen" data-bind="checked:completedMoocs">
+                  <span >E-Learning-Projektmanagement an Schulen</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Videos for teaching, learning and communication" data-bind="checked:completedMoocs">
+                  <span >Videos for teaching, learning and communication</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Introdução aos Sistemas de Informação Geográfica" data-bind="checked:completedMoocs">
+                  <span >Introdução aos Sistemas de Informação Geográfica</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Competências digitais para professors" data-bind="checked:completedMoocs">
+                  <span >Competências digitais para professors</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Necessidades Educativas Especiais. Como ensinar, como aprender" data-bind="checked:completedMoocs">
+                  <span >Necessidades Educativas Especiais. Como ensinar, como aprender</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="DIY Education aux médias et à l'information" data-bind="checked:completedMoocs">
+                  <span >DIY Education aux médias et à l'information</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="MPSW: Mapédagogie à la sauce web 2.0" data-bind="checked:completedMoocs">
+                  <span >MPSW: Mapédagogie à la sauce web 2.0</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Flipped Classroom" data-bind="checked:completedMoocs">
+                  <span >Flipped Classroom</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Working in Multidisciplinary teams" data-bind="checked:completedMoocs">
+                  <span >Working in Multidisciplinary teams</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="M'appare il mondo: dalle carte alla Terra digitale partecipata" data-bind="checked:completedMoocs">
+                  <span >M'appare il mondo: dalle carte alla Terra digitale partecipata</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Los robots en la educación digital" data-bind="checked:completedMoocs">
+                  <span >Los robots en la educación digital</span>
+                  </label>
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-6">
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Alfabetización Digital para Personas en Riesgo de Exclusión: Estrategias para la Intervención Socioeducativa" data-bind="checked:completedMoocs">
+                  <span >Alfabetización Digital para Personas en Riesgo de Exclusión: Estrategias para la Intervención Socioeducativa</span>
+                  </label>
+
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Comunicación y aprendizaje móvil" data-bind="checked:completedMoocs">
+                  <span>Comunicación y aprendizaje móvil</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Sexualidad Amigable y Responsable" data-bind="checked:completedMoocs">
+                  <span >Sexualidad Amigable y Responsable</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Innovación Educativa y Desarrollo Profesional. Posibilidades y límites de las TIC" data-bind="checked:completedMoocs">
+                  <span >Innovación Educativa y Desarrollo Profesional. Posibilidades y límites de las TIC</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Competencias creativas para el profesorado (Creativity MOOC Camp)" data-bind="checked:completedMoocs">
+                  <span >Competencias creativas para el profesorado (Creativity MOOC Camp)</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Artes y tecnologías para educar" data-bind="checked:completedMoocs">
+                  <span >Artes y tecnologías para educar</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="Recursos Educativos Abiertos. Aplicaciones pedagógicas y comunicativas" data-bind="checked:completedMoocs">
+                  <span >Recursos Educativos Abiertos. Aplicaciones pedagógicas y comunicativas</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="sMOOC Step by Step" data-bind="checked:completedMoocs">
+                  <span class="translate" data-bind="text:getLabelText(137)"></span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="El Community Manager" data-bind="checked:completedMoocs">
+                  <span >El Community Manager</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="To Flip or not to Flip" data-bind="checked:completedMoocs">
+                  <span >To Flip or not to Flip</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="How to succeed in the English B1 Level Exam" data-bind="checked:completedMoocs">
+                  <span >How to succeed in the English B1 Level Exam</span>
+                  </label>
+
+                  <label class="checkbox">
+                  <input type="checkbox" name="course" value="El emprendedor digital" data-bind="checked:completedMoocs">
+                  <span >El emprendedor digital</span>
+                  </label>
+
+
+                </div>
+
+              </div>
+
+          </div>
+
+          <div class="form-group col-sm-12">
+              &nbsp;
+          </div>
+
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate e-form-chapter" data-bind="text:getLabelText(202)">tell us what you want</label>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <div class="controls">
+                  <label class="radio">
+                  <input type="radio" value="join"  name="joinorcreate" data-bind="checked:joinorcreate" >
+                  <span class="translate" data-bind="html:getLabelText(203)">join</span>
+                  </label>
+
+                  <label class="radio">
+                  <input type="radio" value="create" name="joinorcreate" data-bind="checked:joinorcreate">
+                  <span class="translate" data-bind="text:getLabelText(204)">create</span>
+                  </label>
+
+              </div>
+          </div>
+
+          <div class="form-actions form-group col-sm-12" data-bind="visible:showSubmitJoin">
+            <div class="col-xs-12 col-sm-4">
+                <a class="button" href="#" data-bind="click:showIntro" >
+                    <span class="translate" data-bind="text:getLabelText(152)">back</span>
+                      <svg width="16px" height="28px">
+                        <path d="M12,2 L1,13 L12,25 L12,23 L3,13 L12,4 z"></path>
+                      </svg>
+                </a>
+            </div>
+
+            <div class="row visible-xs">
+                &nbsp;
+            </div>
+
+            <div class="col-xs-12 col-sm-6">
+                <a class="button e-btn-submit" href="#" data-bind="click:submitForm" >
+                    <span class="translate" data-bind="text:getLabelText(143)">Store</span>
+                    <svg width="16px" height="28px">
+                        <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                  </svg>
+                </a>
+            </div>
+          </div>
+
+
+
+
+      <div data-bind="visible:showsMoocDetails">
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate e-form-chapter" data-bind="text:getLabelText(146)">Give us some information about the MOOC you want to create</label>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="title" class="control-label translate"data-bind="text:getLabelText(138)" >title</label>
+                <input class="form-control" name="title" data-bind="value:title" >
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate" data-bind="text:getLabelText(147)">Category</label>
+                <div class="controls">
+                    <select class="form-control" data-bind="value:category">
+                          <option class="translate" value="Educational science" data-bind="text:getLabelText(40)" selected></option>
+                          <option class="translate" value="Social sciences" data-bind="text:getLabelText(41)"></option>
+                          <option class="translate" value="Humanities" data-bind="text:getLabelText(42)"></option>
+                          <option class="translate" value="Natural sciences and Mathematics" data-bind="text:getLabelText(43)"></option>
+                          <option class="translate" value="Biomedical Sciences" data-bind="text:getLabelText(44)"></option>
+                          <option class="translate" value="Technological sciences" data-bind="text:getLabelText(45)"></option>
+
+                    </select>
+                </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label  for="lang" class="control-label translate" data-bind="text:getLabelText(140)">languages</label>
+              <div class="controls">
+                  <label class="checkbox-inline" >
+                  <input type="checkbox" name="lang" value="English"  data-bind="checked:languages"  >
+                  <span>English</span>
+                  </label>
+
+                  <label class="checkbox-inline " >
+                  <input type="checkbox" name="lang" value="Français"  data-bind="checked:languages"  >
+                  <span>Français</span>
+                  </label>
+
+                  <label class="checkbox-inline" >
+                  <input type="checkbox" name="lang" value="Deutsch"  data-bind="checked:languages" >
+                  <span>Deutsch</span>
+                  </label>
+
+                  <label class="checkbox-inline" >
+                  <input type="checkbox" name="lang" value="Italiano"  data-bind="checked:languages" >
+                  <span>Italiano</span>
+                  </label>
+
+                  <label class="checkbox-inline" >
+                  <input type="checkbox" name="lang" value="Português"  data-bind="checked:languages" >
+                  <span>Português</span>
+                  </label>
+
+                  <label class="checkbox-inline" >
+                  <input type="checkbox" name="lang" value="Español"  data-bind="checked:languages" >
+                  <span>Español</span>
+                  </label>
+              </div>
+          </div>
+
+          <span class="k-invalid-msg" data-for="lang"></span>
+
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate" data-bind="text:getLabelText(141)">mooclevel</label>
+                <div class="controls">
+                    <select class="form-control" data-bind="value:mooclevel">
+                          <option class="translate" value="PrimaryEducation" data-bind="text:getLabelText(129)" ></option>
+                          <option class="translate" value="SecondaryEducation" data-bind="text:getLabelText(130)" ></option>
+                          <option class="translate" value="HigherEducation" data-bind="text:getLabelText(131)"></option>
+                          <option class="translate" value="VocationalEducation" data-bind="text:getLabelText(132)"></option>
+                          <option class="translate" value="SpecialNeedsEducation" data-bind="text:getLabelText(133)"></option>
+                          <option class="translate" value="LifelongEducation" data-bind="text:getLabelText(134)"></option>
+                          <option class="translate" value="NonformalEducation" data-bind="text:getLabelText(135)"></option>
+                          <option class="translate" value="Other" data-bind="text:getLabelText(201)"></option>
+                    </select>
+                </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="topic" class="control-label translate"data-bind="text:getLabelText(139)" >topic</label>
+                <input class="form-control" name="topic" data-bind="value:topic" >
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="learningObjectives" class="control-label translate"data-bind="text:getLabelText(205)" >Learning objectives</label>
+                <input class="form-control" name="learningObjectives" data-bind="value:learningObjectives" >
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="shortDescription" class="control-label translate"data-bind="text:getLabelText(206)" >short desc</label>
+              <textarea name="shortDescription" class="form-control" rows="5" data-bind="value:shortDescription"></textarea>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="recommendedRequirements" class="control-label translate"data-bind="text:getLabelText(207)" >requirwment</label>
+              <textarea name="recommendedRequirements" class="form-control" rows="5" data-bind="value:recommendedRequirements"></textarea>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="targetAudience" class="control-label translate"data-bind="text:getLabelText(209)" >targetAudience</label>
+                <input class="form-control" name="targetAudience" data-bind="value:targetAudience" >
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate" for ="moocOfferedBeforeYesNo" data-bind="text:getLabelText(210)">Offered before?</label>
+              <div class="controls">
+                  <label class="radio-inline" >
+                  <input type="radio" value="yes"  name="moocOfferedBeforeYesNo" data-bind="checked:moocOfferedBeforeYesNo" >
+                  <span class="translate" data-bind="text:getLabelText(125)"></span>
+                  </label>
+                  <label class="radio-inline">
+                  <input type="radio" value="no" name="moocOfferedBeforeYesNo" data-bind="checked:moocOfferedBeforeYesNo">
+                  <span class="translate" data-bind="text:getLabelText(126)"></span>
+                  </label>
+              </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label  for="resources" class="control-label translate" data-bind="text:getLabelText(211)">resources</label>
+              <div class="controls">
+                  <label class="checkbox-inline" >
+                    <input type="checkbox" name="resources" data-bind="checked:resources" value="video">
+                    <span data-bind="text:getLabelText(212)">video</span>
+                  </label>
+                  <label class="checkbox-inline" >
+                    <input type="checkbox" name="resources" data-bind="checked:resources" value="presentation">
+                    <span data-bind="text:getLabelText(213)">Presentations</span>
+                  </label>
+                  <label class="checkbox-inline" >
+                    <input type="checkbox" name="resources" data-bind="checked:resources" value="documents">
+                    <span data-bind="text:getLabelText(214)">Docs</span>
+                  </label>
+                  <label class="checkbox-inline" >
+                    <input type="checkbox" name="resources" data-bind="checked:resources" value="other">
+                    <span data-bind="text:getLabelText(215)">Othe</span>
+                  </label>
+
+              </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="coteachers" class="control-label translate"data-bind="text:getLabelText(217)" >coteachers</label>
+              <textarea name="coteachers" class="form-control" rows="5" data-bind="value:coteachers"></textarea>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label for="othercomments" class="control-label translate"data-bind="text:getLabelText(218)" >othercomments</label>
+              <textarea name="othercomments" class="form-control" rows="5" data-bind="value:othercomments"></textarea>
+          </div>
+
+
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate e-form-chapter" data-bind="text:getLabelText(219)">Give us some information about the MOOC you want to create</label>
+          </div>
+
+          <div class="form-group col-sm-12">
+              <label class="control-label translate " data-bind="html:getLabelText(220)">blabla</label>
+          </div>
+
+
+
+          <div class="form-actions form-group col-sm-12" >
+            <div class="col-xs-12 col-sm-4">
+                <a class="button" href="#" data-bind="click:showIntro" >
+                    <span class="translate" data-bind="text:getLabelText(152)">back</span>
+                      <svg width="16px" height="28px">
+                        <path d="M12,2 L1,13 L12,25 L12,23 L3,13 L12,4 z"></path>
+                      </svg>
+                </a>
+            </div>
+
+            <div class="row visible-xs">
+                &nbsp;
+            </div>
+
+            <div class="col-xs-12 col-sm-6">
+                <a class="button e-btn-submit" href="#" data-bind="click:submitForm" >
+                    <span class="translate" data-bind="text:getLabelText(221)">Store</span>
+                    <svg width="16px" height="28px">
+                        <path d="M2,1L1,2l12,12L1,26l1,1l13-13L2,1z"></path>
+                  </svg>
+                </a>
+            </div>
+          </div>
+
+
+
+
+
+      </div>
+
+
+
+
+        </div>
+
+    </form>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+</div>
+
+</body>
+
+</html>
